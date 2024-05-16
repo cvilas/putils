@@ -1,0 +1,63 @@
+README - POSIX Utilities Package, Version 2.2
+=============================================
+21 January 2006.
+
+TODO:
+=====
+
+Changelog 01/21/2006
+  . TCPClient: Enabled TCP_NODELAY socket option
+  . TCPClient: Enabled timeout (SO_RCVTIMEO)
+  . TCPClient/Server: Enabled setting socket buffer sizes (SO_RCVBUF/SO_SNDBUF) 
+  . UDPClient/Server: Enabled setting socket buffer sizes (SO_RCVBUF/SO_SNDBUF) 
+  . Made changes so that public interface is same for both TCP and UDP client/server.
+  . Cleaned up exception handling, especially throwing exception from destructors,
+    which was a bad idea.
+  
+Changelog 07/19/2005
+  . UDPClient/Server: init made public
+  . UDPClient/Server: sendAndReceive, receiveAndReply made protected.
+  . added pthread_testcancel() to while loop.
+  . Thread: removed availability of class pointer to enterThread, 
+    executeInThread and exitThread functions (this pointer used to
+    cause error in derived class implementations since it points
+    to a base class. We could use dynamic_cast<>() but that is a 
+    bad solution.
+  
+Changelog for 2.0 (relative to 1.0 (Dec 2004))
+  . Renamed NetworkClient and NetworkServer classes to 
+    TCPClient and TCPServer, respectively.
+  . Fixed a few bugs in TCPServer/TCPClient.
+  . Added a cleanup routine to Thread class.
+  . Added UDPClient and UDPServer.
+  . Provides both static and shared libraries
+
+
+Problems:
+=========
+* NetworkClientServer
+-> Data corruption may occur with multiple clients over network
+
+References used
+===============
+* The POSIX book
+ 
+* Guide to Realtime Programming (DIGITAL UNIX)
+  http://www.uccs.edu/~compsvcs/doc-cdrom/DOCS/HTML/APS33DTE/TITLE.HTM
+
+* Sockets
+  http://www.lowtek.com/sockets
+  http://pont.net/socket/
+  http://www.kmutt.ac.th/knowledge/programming/c/unix_socket/faq/unix-socket-faq-5.html
+  http://www.linuxgazette.com/node/8758
+  High performance TCP:
+  http://www-128.ibm.com/developerworks/linux/library/l-hisock.html?ca=dgr-lnxw01BoostSocket
+
+* Thread class
+  http://www.biglal.net/pthreads/Presentation/Pthreads.htm
+  http://www.geocities.com/SiliconValley/Heights/6038/dthreads.html
+  http://www.codeguru.com/Cpp/misc/misc/threadsprocesses/article.php/c3793/
+
+* Barrier
+  http://www.cs.loyola.edu/~jglenn/702/S2004/Examples/barrier.html
+  
